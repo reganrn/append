@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>test</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+        <table width="50%">
+            <tr>
+                <td>
+                <input type="text" class="item-code" placeholder="Item code">
+                </td>
+                <td>
+                <input type="text" placeholder="Item name">
+                </td>
+                <td>
+                <input type="text" placeholder="Qty">
+                </td>
+                <td>
+                <input type="text" placeholder="Rate">
+                </td>
+                <td>
+                <input class="enter-add-one" type="text" placeholder="Total">
+                </td>
+                <td></td>
+            </tr>
+        </table>
+        <table width="50%" class="append-source">
+        </table>
+    <script>
+        $(function() {
+
+            // Append HTML Files her
+            var source = '<tr><td><input class="item-code" type="text" placeholder="Item code"></td><td><input type="text" placeholder="Item name"></td><td><input type="text" placeholder="Qty"></td><td><input type="text" placeholder="Rate"></td><td><input class="enter-add-one" type="text" placeholder="Total"></td><td><a href="javascript:;" class="remove-append">X</a></td></tr>';
+
+            // Enter Key Code here
+            $(document).keypress(function(event){
+                var keycode = (event.keyCode ? event.keyCode : event.which);
+                if(keycode == '13'){
+
+                    // Total input box class
+                    var enterFocus = $('.enter-add-one');
+                    if(enterFocus.is( ":focus" )){
+                        $('.append-source').append(source);                        
+                    }
+
+                    // Focus next Input box here
+                    $('.append-source tr:last-child').find('.item-code').focus()
+                }
+            });
+
+            // Remove code here
+            $(document).on('click', '.remove-append', function(){
+                $(this).parents('tr').remove();
+
+                // Focus Last Input Total here
+                $('.append-source tr:last-child').find('.enter-add-one').focus()
+            })
+            
+        })
+    </script>
+</body>
+</html>
